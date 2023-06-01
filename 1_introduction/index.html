@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        background-color: aqua;
+        height: 200px;
+        width: 200px;
+      }
+      .box-two {
+        background-color: red;
+        height: 200px;
+        width: 200px;
+      }
+      .box-three {
+        background-color: yellow;
+        height: 200px;
+        width: 200px;
+      }
+      [v-cloak] {
+        /* để loại bỏ khi vài giây đầu sẽ hiện giá trị vue vd: {{ greeting }} */
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="" id="app" v-cloak>
+      {{ greeting }}
+
+      <!-- Khi thẻ input thay đổi giá trị thì biến greeting cũng thay đổi giá trị -->
+      <input v-model="greeting" />
+      <hr />
+
+      <!-- v-if và v-show khi giá trị là truthy 
+        thì nó sẽ hiện còn khi false thì 
+        v-if sẽ k có thẻ đó và k hiện ra,
+        v-show thì k hiện ra nhưng có thẻ đó trong DOM -->
+      <div class="box" v-if="isVisible"></div>
+      <div class="box-two" v-else-if="isVisible2"></div>
+      <div class="box-three" v-else></div>
+      <hr />
+
+      <div class="box" v-show="isVisible"></div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      let app = Vue.createApp({
+        data: function () {
+          return {
+            greeting: "Hello Vue 3!",
+            isVisible: false,
+            isVisible2: true,
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
